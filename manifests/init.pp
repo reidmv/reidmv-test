@@ -8,9 +8,15 @@
 #   include test
 class test {
 
-  $path = fact('osfamily') ? {
-    'windows' => 'C:\test',
-    'RedHat'  => '/etc/test',
+  case fact('osfamily') {
+    'windows': {
+      $path = 'C:\file'
+      $link = 'C:\link'
+    }
+    'RedHat': {
+      $path = '/etc/file'
+      $link = '/etc/link'
+    }
   }
 
   ini_setting { 'test':
@@ -19,6 +25,11 @@ class test {
     section => 'main',
     setting => 'test',
     value   => 'value'
+  }
+
+  file { $link:
+    ensure => symlink,
+    target => $path,
   }
 
 }
