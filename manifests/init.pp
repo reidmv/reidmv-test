@@ -28,7 +28,7 @@ class test {
   }
 
   file { $link:
-    ensure => symlink,
+    ensure => link,
     target => $path,
   }
 
