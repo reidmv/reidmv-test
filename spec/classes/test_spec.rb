@@ -15,14 +15,10 @@ describe 'test' do
 
   on_supported_os(facterversion: '2.4').each do |os, os_facts|
 
-    os_facts.merge!({ :external_repo_package => 'http://softwarelibrary.wellsfargo.com:12080/mrc-packages',
-                      :external_repo_yum => 'http://softwarelibrary.wellsfargo.com:12080/yum' })
-
     context "on #{os}" do
 
       if os_facts[:operatingsystem] == 'windows'
-        windows_facts = { :wf_domain => 'AD-ENT', :is_bunsen => true }
-        let(:facts) { os_facts.merge(windows_facts) }
+        let(:facts) { os_facts }
         # let :pre_condition do
         #   <<-EOF
         #   File {
