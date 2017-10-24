@@ -9,7 +9,7 @@
 class test {
 
   case fact('osfamily') {
-    'windows': {
+    'windows',default: {
       $path = 'C:\file'
       $link = 'C:\link'
     }
